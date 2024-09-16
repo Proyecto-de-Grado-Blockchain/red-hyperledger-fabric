@@ -82,6 +82,46 @@ services:
     networks:
       - procesos
 
+  #CA para Fiscalia	
+  ca.fiscalia.unbosque.edu.co:
+    image: hyperledger/fabric-ca:latest
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.fiscalia.unbosque.edu.co
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.fiscalia.unbosque.edu.co-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.fiscalia.unbosque.edu.co-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+    ports:
+      - "7064:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw'
+    volumes:
+      - ./crypto-config/peerOrganizations/fiscalia.unbosque.edu.co/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca.fiscalia.unbosque.edu.co
+    networks:
+      - procesos
+
+  #CA para CTI	
+  ca.cti.unbosque.edu.co:
+    image: hyperledger/fabric-ca:latest
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.cti.unbosque.edu.co
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.cti.unbosque.edu.co-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.cti.unbosque.edu.co-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+    ports:
+      - "7074:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw'
+    volumes:
+      - ./crypto-config/peerOrganizations/cti.unbosque.edu.co/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca.cti.unbosque.edu.co
+    networks:
+      - procesos
+
   cli:
     container_name: cli
     image: hyperledger/fabric-tools:latest
