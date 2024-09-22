@@ -1,0 +1,20 @@
+{
+  "name": "blockchain_medicina_forense_chaincode",
+  "version": "1.0.0",
+  "description": "Chaincode para Blockchain Medicina Forense",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000"
+  },
+  "author": "Jonathan Angulo",
+  "license": "ISC",
+  "dependencies": {
+    "fabric-contract-api": "^2.5.6",
+    "fabric-shim": "^2.5.6"
+  },
+  "devDependencies": {
+    "chai": "^4.5.0",
+    "eslint": "^7.0.0",
+    "mocha": "^10.7.3"
+  }
+}
