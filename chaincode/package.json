@@ -4,6 +4,7 @@
   "description": "Chaincode para Blockchain Medicina Forense",
   "main": "index.js",
   "scripts": {
+    "start": "fabric-chaincode-node start",
     "test": "mocha --timeout 10000"
   },
   "author": "Jonathan Angulo",
