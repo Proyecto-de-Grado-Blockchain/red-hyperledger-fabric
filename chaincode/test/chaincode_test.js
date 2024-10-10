@@ -78,13 +78,14 @@ describe('Blockchain Medicina Forense Chaincode', () => {
         const documento = {
             id: 'doc1',
             idCaso: 'caso1',
-            tipoDocumento: 'Informe',
-            nombreArchivo: 'informe.pdf',
-            fechaSubida: '2024-09-22',
-            usuarioResponsable: 'user1'
+            tipoDocumento: 'Informe Forense',
+            nombreArchivo: 'informe_forense.pdf',
+            fechaSubida: '2024-10-10',
+            usuarioResponsable: '1',
+            hashDocumento: '9bb655eb61af872587e52b84ee47a101796e2bc7bdfeb27f1bcedef26590902a'
         };
     
-        await chaincode.agregarDocumento(ctx, documento.id, documento.idCaso, documento.tipoDocumento, documento.nombreArchivo, documento.fechaSubida, documento.usuarioResponsable);
+        await chaincode.agregarDocumento(ctx, documento.id, documento.idCaso, documento.tipoDocumento, documento.nombreArchivo, documento.fechaSubida, documento.usuarioResponsable, documento.hashDocumento);
     
         const consultarResponse = await chaincode.consultarDocumentos(ctx, documento.id);
         const result = JSON.parse(consultarResponse);
