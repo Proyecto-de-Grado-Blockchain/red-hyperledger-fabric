@@ -68,8 +68,8 @@ class BlockchainMedicinaForenseChaincode extends Contract {
         return JSON.stringify([JSON.parse(historialJSON.toString())]);  // Devolver como un array de un solo elemento
     }    
 
-    async agregarDocumento(ctx, id, idCaso, tipoDocumento, nombreArchivo, fechaSubida, usuarioResponsable) {
-        const documento = new Documento(id, idCaso, tipoDocumento, nombreArchivo, fechaSubida, usuarioResponsable);
+    async agregarDocumento(ctx, id, idCaso, tipoDocumento, nombreArchivo, fechaSubida, usuarioResponsable, hashDocumento) {
+        const documento = new Documento(id, idCaso, tipoDocumento, nombreArchivo, fechaSubida, usuarioResponsable, hashDocumento);
         await ctx.stub.putState(id, Buffer.from(JSON.stringify(documento)));
         return JSON.stringify(documento);
     }
