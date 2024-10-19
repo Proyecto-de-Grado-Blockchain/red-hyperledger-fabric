@@ -1,0 +1,11 @@
+caliper:
+  sut: fabric:2.4
+
+  logging:
+    level: info
+
+  reporting:
+    json:
+      file: "./reports/caliper-report.json"
+    html:
+      file: "./reports/caliper-report.html"

@@ -1,0 +1,53 @@
+# config.yaml
+
+test:
+  name: "Medicina Forense Benchmark - Currency Lifecycle"
+  description: "Benchmark para evaluar operaciones en el chaincode de Medicina Forense."
+  workers:
+    type: "local"
+    number: 5
+  rounds:
+    - label: "Ronda 1 - Crear Usuario"
+      txNumber: 1000
+      rateControl:
+        type: "fixed-rate"
+        opts:
+          tps: 10
+      workload:
+        module: "../../workloads/benchmark.js"
+        arguments:
+          txType: "crearUsuario"
+
+    - label: "Ronda 2 - Consultar Usuario"
+      txNumber: 1000
+      rateControl:
+        type: "fixed-rate"
+        opts:
+          tps: 10
+      workload:
+        module: "../../workloads/benchmark.js"
+        arguments:
+          txType: "consultarUsuario"
+
+callbacks:
+  preBenchmark: "../../callbacks/control/currency/mini.js#onBenchmarkStart"
+  postBenchmark: "../../callbacks/control/currency/mini.js#onBenchmarkEnd"
+  preRound: "../../callbacks/control/currency/mini.js#onRoundStart"
+  postRound: "../../callbacks/control/currency/mini.js#onRoundEnd"
+  preTransaction: "../../callbacks/control/currency/mini.js#onTransactionSubmit"
+  postTransaction: "../../callbacks/control/currency/mini.js#onTransactionResult"
+
+blockchain:
+  type: "fabric"
+  version: "2.4"
+  network:
+    config: "../../networks/unbosque-network-local.yaml"
+    wallets:
+      Admin@medleg.unbosque.edu.co:
+        path: "../../wallet"
+    organizations:
+      MedLeg:
+        mspid: "MedLegMSP"
+        identities:
+          - username: "Admin@medleg.unbosque.edu.co"
+            wallet: "Admin@medleg.unbosque.edu.co"
