@@ -61,7 +61,38 @@ class MockStub {
         return new MockIterator(keys, this.state);
     }
 
+<<<<<<< HEAD
     // Puedes agregar más métodos si es necesario
+=======
+    // Simular getQueryResult para realizar consultas ricas por un campo como idCaso
+    async getQueryResult(queryString) {
+        // Se espera que queryString sea una cadena JSON
+        const query = JSON.parse(queryString);
+        const idCaso = query.selector.idCaso;
+
+        const results = [];
+        for (const key in this.state) {
+            const record = JSON.parse(this.state[key]);
+            if (record.idCaso === idCaso) {
+                results.push({
+                    key: key,
+                    value: this.state[key]
+                });
+            }
+        }
+
+        // Simular un iterador de resultados
+        return {
+            next: async () => {
+                const result = results.shift();
+                return result
+                    ? { value: result, done: false }
+                    : { done: true };
+            },
+            close: async () => {}
+        };
+    }
+>>>>>>> 30b0448522e5342552596c4346a35ddda23ce9a3
 }
 
 module.exports = MockStub;

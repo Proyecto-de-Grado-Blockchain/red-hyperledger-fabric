@@ -82,6 +82,7 @@ class BlockchainMedicinaForenseChaincode extends Contract {
         return JSON.stringify([JSON.parse(documentoJSON.toString())]);  // Devolver como un array de un solo elemento
     }
 
+<<<<<<< HEAD
     async consultarDocumentosPorCaso(ctx, idCaso) {
         const allResults = [];
         const iterator = await ctx.stub.getStateByRange('', '');
@@ -103,7 +104,36 @@ class BlockchainMedicinaForenseChaincode extends Contract {
     }
 
 
+=======
+    async consultarDocumentosCaso(ctx, idCaso) {
+        const queryString = {
+            selector: {
+                idCaso: idCaso
+            }
+        };
+>>>>>>> 30b0448522e5342552596c4346a35ddda23ce9a3
     
+        const resultados = await this.consultarPorQuery(ctx, JSON.stringify(queryString));
+        return resultados;
+    }
+    
+    async consultarPorQuery(ctx, queryString) {
+        const iterator = await ctx.stub.getQueryResult(queryString);
+    
+        const resultados = [];
+        let resultado = await iterator.next();
+    
+        while (!resultado.done) {
+            const jsonRes = {};
+            jsonRes.key = resultado.value.key;
+            jsonRes.record = JSON.parse(resultado.value.value.toString('utf8'));
+            resultados.push(jsonRes);
+            resultado = await iterator.next();
+        }
+    
+        await iterator.close();
+        return JSON.stringify(resultados);
+    }
 }
 
 module.exports = BlockchainMedicinaForenseChaincode;

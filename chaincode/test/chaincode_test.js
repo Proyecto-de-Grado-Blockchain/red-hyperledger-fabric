@@ -77,7 +77,7 @@ describe('Blockchain Medicina Forense Chaincode', () => {
     it('debería agregar y consultar un documento correctamente', async () => {
         const documento = {
             id: 'doc1',
-            idCaso: 'caso1',
+            idCaso: 'CASO007',
             tipoDocumento: 'Informe Forense',
             nombreArchivo: 'informe_forense.pdf',
             fechaSubida: '2024-10-10',
@@ -87,7 +87,7 @@ describe('Blockchain Medicina Forense Chaincode', () => {
     
         await chaincode.agregarDocumento(ctx, documento.id, documento.idCaso, documento.tipoDocumento, documento.nombreArchivo, documento.fechaSubida, documento.usuarioResponsable, documento.hashDocumento);
     
-        const consultarResponse = await chaincode.consultarDocumentos(ctx, documento.id);
+        const consultarResponse = await chaincode.consultarDocumentosCaso(ctx, documento.idCaso);
         const result = JSON.parse(consultarResponse);
     
         expect(result).to.deep.equal([documento]);
