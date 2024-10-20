@@ -1,0 +1,12 @@
+caliper:
+  benchconfig: ./benchmarks/config.yaml
+  networkconfig: ./networks/unbosque-network-local.yaml
+  bind:
+    sut: fabric:2.2
+  logging:
+    level: info
+  reporting:
+    json:
+      file: "./reports/caliper-report.json"
+    html:
+      file: "./reports/caliper-report.html"

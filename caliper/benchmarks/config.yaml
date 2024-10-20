@@ -1,0 +1,39 @@
+# config.yaml
+
+test:
+  name: "blockpruebas"
+  description: "Benchmark para evaluar operaciones en el chaincode de Medicina Forense."
+  workers:
+    type: "local"
+    number: 5
+  rounds:
+    - label: "Ronda 1 - Crear Usuario"
+      chaincodeID: blockpruebas
+      txNumber: 1000
+      rateControl:
+        type: "fixed-rate"
+        opts:
+          tps: 10
+      workload:
+        module: "./benchmark.js"
+        arguments:
+          txType: "crearUsuario"
+
+    - label: "Ronda 2 - Consultar Usuario"
+      chaincodeID: blockpruebas
+      txNumber: 1000
+      rateControl:
+        type: "fixed-rate"
+        opts:
+          tps: 10
+      workload:
+        module: "./benchmark.js"
+        arguments:
+          txType: "consultarUsuario"
+
+monitors:
+    resource:
+    - module: docker
+      options:
+        interval: 4
+        containers: ['all']

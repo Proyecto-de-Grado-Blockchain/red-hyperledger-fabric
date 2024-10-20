@@ -1,0 +1,110 @@
+# unbosque-network-local.yaml
+
+name: "unbosque-network"
+version: "2.0.0"
+
+caliper:
+  blockchain: "fabric"
+
+organizations:
+  MedLeg:
+    mspid: "MedLegMSP"
+    peers:
+      - "peer0.medleg.unbosque.edu.co"
+    certificateAuthorities:
+      - "ca.medleg.unbosque.edu.co"
+
+  CTI:
+    mspid: "CTIMSP"
+    peers:
+      - "peer0.cti.unbosque.edu.co"
+    certificateAuthorities:
+      - "ca.cti.unbosque.edu.co"
+
+  Fiscalia:
+    mspid: "FiscaliaMSP"
+    peers:
+      - "peer0.fiscalia.unbosque.edu.co"
+    certificateAuthorities:
+      - "ca.fiscalia.unbosque.edu.co"
+
+orderers:
+  orderer.unbosque.edu.co:
+    url: "grpcs://orderer.unbosque.edu.co:7050"
+    grpcOptions:
+      ssl-target-name-override: "orderer.unbosque.edu.co"
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+      path: "../../unbosque-network/crypto-config/ordererOrganizations/unbosque.edu.co/tlsca/tlsca.unbosque.edu.co-cert.pem"
+
+peers:
+  peer0.medleg.unbosque.edu.co:
+    url: "grpcs://peer0.medleg.unbosque.edu.co:7051"
+    grpcOptions:
+      ssl-target-name-override: "peer0.medleg.unbosque.edu.co"
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+      path: "../../unbosque-network/crypto-config/peerOrganizations/medleg.unbosque.edu.co/tlsca/tlsca.medleg.unbosque.edu.co-cert.pem"
+
+  peer0.cti.unbosque.edu.co:
+    url: "grpcs://peer0.cti.unbosque.edu.co:7051"
+    grpcOptions:
+      ssl-target-name-override: "peer0.cti.unbosque.edu.co"
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+      path: "../../unbosque-network/crypto-config/peerOrganizations/cti.unbosque.edu.co/tlsca/tlsca.cti.unbosque.edu.co-cert.pem"
+
+  peer0.fiscalia.unbosque.edu.co:
+    url: "grpcs://peer0.fiscalia.unbosque.edu.co:7051"
+    grpcOptions:
+      ssl-target-name-override: "peer0.fiscalia.unbosque.edu.co"
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+      path: "../../unbosque-network/crypto-config/peerOrganizations/fiscalia.unbosque.edu.co/tlsca/tlsca.fiscalia.unbosque.edu.co-cert.pem"
+
+certificateAuthorities:
+  ca.medleg.unbosque.edu.co:
+    url: "https://ca.medleg.unbosque.edu.co:7054"
+    caName: "ca.medleg.unbosque.edu.co"
+    tlsCACerts:
+      path: "../../unbosque-network/crypto-config/peerOrganizations/medleg.unbosque.edu.co/ca/ca.medleg.unbosque.edu.co-cert.pem"
+
+  ca.cti.unbosque.edu.co:
+    url: "https://ca.cti.unbosque.edu.co:7074"
+    caName: "ca.cti.unbosque.edu.co"
+    tlsCACerts:
+      path: "../../unbosque-network/crypto-config/peerOrganizations/cti.unbosque.edu.co/ca/ca.cti.unbosque.edu.co-cert.pem"
+
+  ca.fiscalia.unbosque.edu.co:
+    url: "https://ca.fiscalia.unbosque.edu.co:7064"
+    caName: "ca.fiscalia.unbosque.edu.co"
+    tlsCACerts:
+      path: "../../unbosque-network/crypto-config/peerOrganizations/fiscalia.unbosque.edu.co/ca/ca.fiscalia.unbosque.edu.co-cert.pem"
+
+channels:
+  - channelName: unbosquechannel
+    orderers:
+      - "orderer.unbosque.edu.co"
+    peers:
+      "peer0.medleg.unbosque.edu.co":
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      "peer0.cti.unbosque.edu.co":
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      "peer0.fiscalia.unbosque.edu.co":
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+    contracts:
+      - id: blockpruebas
+        version: "1.0"
+        sequence: "1"
+        language: "node"
+        initRequired: false
+    
