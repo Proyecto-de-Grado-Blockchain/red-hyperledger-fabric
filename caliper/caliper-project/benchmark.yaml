@@ -1,0 +1,43 @@
+test:
+  name: Prueba de Rendimiento del Chaincode
+  description: Pruebas de rendimiento para las funciones del chaincode
+  workers:
+    number: 1
+  rounds:
+    - label: crearUsuario
+      description: Prueba para crear usuarios
+      txNumber: 100
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 10
+      workload:
+        module: benchmarks/crearUsuario.js
+        arguments:
+          function: 'crearUsuario'
+
+    - label: consultarUsuario
+      description: Prueba para consultar usuarios
+      txNumber: 100
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 20
+      workload:
+        module: benchmarks/consultarUsuario.js
+        arguments:
+          function: 'consultarUsuario'
+
+sut:
+  type: fabric:2.2
+
+caliper:
+  blockchain:
+    fabric:
+      gateway:
+        enabled: true
+      contract:
+        id: 'blockchain_medicina_forense'
+        version: '1.0'
+        language: 'node'
+        channel: 'unbosquechannel'
