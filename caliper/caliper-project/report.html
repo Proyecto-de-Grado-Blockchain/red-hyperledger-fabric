@@ -128,14 +128,16 @@
                 <li>DLT: &nbsp<span style="font-weight: 500;">fabric</span></li>
                 <li>Name: &nbsp<span style="font-weight: 500;">Prueba de Rendimiento del Chaincode</span></li>
                 <li>Description: &nbsp<span style="font-weight: 500;">Pruebas de rendimiento para las funciones del chaincode</span></li>
-                <li>Benchmark Rounds: &nbsp<span style="font-weight: 500;">2</span></li>
+                <li>Benchmark Rounds: &nbsp<span style="font-weight: 500;">4</span></li>
                 <li><a href="#benchmarkInfo">Details</a></li>
             </ul>
             <ul>
                 <h3>&nbspBenchmark results</h3>
                 <li><a href="#benchmarksummary">Summary</a></li>
-                    <li><a href="#crearUsuario">crearUsuario</a></li>
-                    <li><a href="#consultarUsuario">consultarUsuario</a></li>
+                    <li><a href="#crearDocumento">crearDocumento</a></li>
+                    <li><a href="#consultarDocumento">consultarDocumento</a></li>
+                    <li><a href="#crearCaso">crearCaso</a></li>
+                    <li><a href="#consultarCaso">consultarCaso</a></li>
             </ul>
             <ul>
                 <h3>&nbspSystem under test</h3>
@@ -153,51 +155,97 @@
                     </tr>
 
                     <tr>
-                         <td>crearUsuario</td> <td>100</td> <td>0</td> <td>10.1</td> <td>1.26</td> <td>0.10</td> <td>0.60</td> <td>9.7</td>
+                         <td>crearDocumento</td> <td>100</td> <td>0</td> <td>10.1</td> <td>1.06</td> <td>0.13</td> <td>0.59</td> <td>10.0</td>
                     </tr>
                     <tr>
-                         <td>consultarUsuario</td> <td>100</td> <td>0</td> <td>20.2</td> <td>0.12</td> <td>0.01</td> <td>0.01</td> <td>20.1</td>
+                         <td>consultarDocumento</td> <td>100</td> <td>0</td> <td>20.2</td> <td>0.03</td> <td>0.01</td> <td>0.01</td> <td>20.1</td>
+                    </tr>
+                    <tr>
+                         <td>crearCaso</td> <td>100</td> <td>0</td> <td>20.2</td> <td>0.62</td> <td>0.12</td> <td>0.36</td> <td>19.7</td>
+                    </tr>
+                    <tr>
+                         <td>consultarCaso</td> <td>100</td> <td>0</td> <td>20.2</td> <td>0.03</td> <td>0.01</td> <td>0.02</td> <td>20.1</td>
                     </tr>
                 </table>
             </div>
-            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="crearUsuario">
-                <h2>Benchmark round: crearUsuario</h2>
-                <p>Prueba para crear usuarios</p>
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="crearDocumento">
+                <h2>Benchmark round: crearDocumento</h2>
+                <p>Prueba para cargar documentos</p>
                 <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
   type: fixed-rate
   opts:
     tps: 10
 </pre>
-                        <h3>Performance metrics for crearUsuario</h3>
+                        <h3>Performance metrics for crearDocumento</h3>
                             <table style="min-width: 100%;">
                                 <tr>
                                      <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
                                 </tr>
                                 <tr>
-                                     <td>crearUsuario</td> <td>100</td> <td>0</td> <td>10.1</td> <td>1.26</td> <td>0.10</td> <td>0.60</td> <td>9.7</td>
+                                     <td>crearDocumento</td> <td>100</td> <td>0</td> <td>10.1</td> <td>1.06</td> <td>0.13</td> <td>0.59</td> <td>10.0</td>
                                 </tr>
                             </table>
-                        <h3>Resource utilization for crearUsuario</h3>
+                        <h3>Resource utilization for crearDocumento</h3>
             </div>
 
-            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="consultarUsuario">
-                <h2>Benchmark round: consultarUsuario</h2>
-                <p>Prueba para consultar usuarios</p>
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="consultarDocumento">
+                <h2>Benchmark round: consultarDocumento</h2>
+                <p>Prueba para consultar documentos</p>
                 <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
   type: fixed-rate
   opts:
     tps: 20
 </pre>
-                        <h3>Performance metrics for consultarUsuario</h3>
+                        <h3>Performance metrics for consultarDocumento</h3>
                             <table style="min-width: 100%;">
                                 <tr>
                                      <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
                                 </tr>
                                 <tr>
-                                     <td>consultarUsuario</td> <td>100</td> <td>0</td> <td>20.2</td> <td>0.12</td> <td>0.01</td> <td>0.01</td> <td>20.1</td>
+                                     <td>consultarDocumento</td> <td>100</td> <td>0</td> <td>20.2</td> <td>0.03</td> <td>0.01</td> <td>0.01</td> <td>20.1</td>
                                 </tr>
                             </table>
-                        <h3>Resource utilization for consultarUsuario</h3>
+                        <h3>Resource utilization for consultarDocumento</h3>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="crearCaso">
+                <h2>Benchmark round: crearCaso</h2>
+                <p>Prueba para crear casos</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 20
+</pre>
+                        <h3>Performance metrics for crearCaso</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>crearCaso</td> <td>100</td> <td>0</td> <td>20.2</td> <td>0.62</td> <td>0.12</td> <td>0.36</td> <td>19.7</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for crearCaso</h3>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="consultarCaso">
+                <h2>Benchmark round: consultarCaso</h2>
+                <p>Prueba para consultar casos</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 20
+</pre>
+                        <h3>Performance metrics for consultarCaso</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>consultarCaso</td> <td>100</td> <td>0</td> <td>20.2</td> <td>0.03</td> <td>0.01</td> <td>0.02</td> <td>20.1</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for consultarCaso</h3>
             </div>
 
             <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;">
@@ -208,28 +256,50 @@ description: Pruebas de rendimiento para las funciones del chaincode
 workers:
   number: 1
 rounds:
-  - label: crearUsuario
-    description: Prueba para crear usuarios
+  - label: crearDocumento
+    description: Prueba para cargar documentos
     txNumber: 100
     rateControl:
       type: fixed-rate
       opts:
         tps: 10
     workload:
-      module: benchmarks&#x2F;crearUsuario.js
+      module: benchmarks&#x2F;crearDocumento.js
       arguments:
-        function: crearUsuario
-  - label: consultarUsuario
-    description: Prueba para consultar usuarios
+        function: crearDocumento
+  - label: consultarDocumento
+    description: Prueba para consultar documentos
     txNumber: 100
     rateControl:
       type: fixed-rate
       opts:
         tps: 20
     workload:
-      module: benchmarks&#x2F;consultarUsuario.js
+      module: benchmarks&#x2F;consultarDocumento.js
       arguments:
-        function: consultarUsuario
+        function: consultarDocumentos
+  - label: crearCaso
+    description: Prueba para crear casos
+    txNumber: 100
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 20
+    workload:
+      module: benchmarks&#x2F;crearCaso.js
+      arguments:
+        function: crearCaso
+  - label: consultarCaso
+    description: Prueba para consultar casos
+    txNumber: 100
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 20
+    workload:
+      module: benchmarks&#x2F;consultarCaso.js
+      arguments:
+        function: consultarCaso
 </pre>
                 <h3>SUT</h3>
                 <pre id="sutdetails">not provided</pre>

@@ -4,29 +4,53 @@ test:
   workers:
     number: 1
   rounds:
-    - label: crearUsuario
-      description: Prueba para crear usuarios
+    - label: crearDocumento
+      description: Prueba para cargar documentos
       txNumber: 100
       rateControl:
         type: fixed-rate
         opts:
           tps: 10
       workload:
-        module: benchmarks/crearUsuario.js
+        module: benchmarks/crearDocumento.js
         arguments:
-          function: 'crearUsuario'
+          function: 'crearDocumento'
 
-    - label: consultarUsuario
-      description: Prueba para consultar usuarios
+    - label: consultarDocumento
+      description: Prueba para consultar documentos
       txNumber: 100
       rateControl:
         type: fixed-rate
         opts:
           tps: 20
       workload:
-        module: benchmarks/consultarUsuario.js
+        module: benchmarks/consultarDocumento.js
         arguments:
-          function: 'consultarUsuario'
+          function: 'consultarDocumentos'
+
+    - label: crearCaso
+      description: Prueba para crear casos
+      txNumber: 100
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 20
+      workload:
+        module: benchmarks/crearCaso.js
+        arguments:
+          function: 'crearCaso'
+
+    - label: consultarCaso
+      description: Prueba para consultar casos
+      txNumber: 100
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 20
+      workload:
+        module: benchmarks/consultarCaso.js
+        arguments:
+          function: 'consultarCaso'
 
 sut:
   type: fabric:2.2
