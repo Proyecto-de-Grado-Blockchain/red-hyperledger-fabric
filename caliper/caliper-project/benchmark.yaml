@@ -36,6 +36,11 @@ caliper:
     fabric:
       gateway:
         enabled: true
+        discovery: 
+          enabled: true
+        eventHandlerOptions:
+          commitTimeout: 300
+          strategy: MSPID_SCOPE_ANYFORTX
       contract:
         id: 'blockchain_medicina_forense'
         version: '1.0'

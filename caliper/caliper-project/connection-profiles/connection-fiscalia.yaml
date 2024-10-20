@@ -3,6 +3,14 @@ version: "1.0.0"
 
 client:
   organization: Fiscalia
+  connection:
+    timeout:
+      peer:
+        endorser: 300
+      orderer: 300
+      eventHandlerOptions:
+      commitTimeout: 300
+      strategy: MSPID_SCOPE_ANYFORTX
   credentialStore:
     path: "./wallet"
     cryptoStore:
@@ -24,6 +32,7 @@ peers:
     grpcOptions:
       ssl-target-name-override: peer0.fiscalia.unbosque.edu.co
       hostnameOverride: peer0.fiscalia.unbosque.edu.co
+    eventSource: true
 
 orderers:
   orderer.unbosque.edu.co:
@@ -33,6 +42,17 @@ orderers:
     grpcOptions:
       ssl-target-name-override: orderer.unbosque.edu.co
       hostnameOverride: orderer.unbosque.edu.co
+
+channels:
+  unbosquechannel:
+    orderers:
+      - orderer.unbosque.edu.co
+    peers:
+      peer0.fiscalia.unbosque.edu.co:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
 
 certificateAuthorities:
   ca.fiscalia.unbosque.edu.co:
