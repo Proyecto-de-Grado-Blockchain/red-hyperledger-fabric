@@ -1,0 +1,42 @@
+name: "Fiscalia Network"
+version: "1.0.0"
+
+client:
+  organization: Fiscalia
+  credentialStore:
+    path: "./wallet"
+    cryptoStore:
+      path: "./wallet"
+
+organizations:
+  Fiscalia:
+    mspid: FiscaliaMSP
+    peers:
+      - peer0.fiscalia.unbosque.edu.co
+    certificateAuthorities:
+      - ca.fiscalia.unbosque.edu.co
+
+peers:
+  peer0.fiscalia.unbosque.edu.co:
+    url: grpcs://localhost:9051
+    tlsCACerts:
+      path: ../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/fiscalia.unbosque.edu.co/peers/peer0.fiscalia.unbosque.edu.co/tls/ca.crt
+    grpcOptions:
+      ssl-target-name-override: peer0.fiscalia.unbosque.edu.co
+      hostnameOverride: peer0.fiscalia.unbosque.edu.co
+
+orderers:
+  orderer.unbosque.edu.co:
+    url: grpcs://localhost:7050
+    tlsCACerts:
+      path: ../../../red-hyperledger-fabric/unbosque-network/crypto-config/ordererOrganizations/unbosque.edu.co/orderers/orderer.unbosque.edu.co/tls/ca.crt
+    grpcOptions:
+      ssl-target-name-override: orderer.unbosque.edu.co
+      hostnameOverride: orderer.unbosque.edu.co
+
+certificateAuthorities:
+  ca.fiscalia.unbosque.edu.co:
+    url: https://localhost:7064
+    caName: ca-fiscalia
+    tlsCACerts:
+      path: ../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/fiscalia.unbosque.edu.co/ca/ca.fiscalia.unbosque.edu.co-cert.pem

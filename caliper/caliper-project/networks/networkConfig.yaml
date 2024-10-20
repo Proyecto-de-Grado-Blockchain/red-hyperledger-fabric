@@ -1,0 +1,49 @@
+name: Caliper Test Network
+version: "2.0.0"
+
+caliper:
+  blockchain: fabric
+
+channels:
+  - channelName: unbosquechannel
+    contracts:
+      - id: blockchain_medicina_forense
+        version: 1.0
+        language: node
+        channel: unbosquechannel
+        contractID: blockchain_medicina_forense
+
+organizations:
+  - mspid: CTIMSP
+    identities:
+      certificates:
+        - name: 'Admin@cti.unbosque.edu.co'
+          clientPrivateKey:
+            path: '../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/cti.unbosque.edu.co/users/Admin@cti.unbosque.edu.co/msp/keystore/priv_sk'
+          clientSignedCert:
+            path: '../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/cti.unbosque.edu.co/users/Admin@cti.unbosque.edu.co/msp/signcerts/Admin@cti.unbosque.edu.co-cert.pem'
+    connectionProfile:
+      path: './connection-profiles/connection-cti.yaml'
+
+  - mspid: MedLegMSP
+    identities:
+      certificates:
+        - name: 'Admin@medleg.unbosque.edu.co'
+          clientPrivateKey:
+            path: '../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/medleg.unbosque.edu.co/users/Admin@medleg.unbosque.edu.co/msp/keystore/priv_sk'
+          clientSignedCert:
+            path: '../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/medleg.unbosque.edu.co/users/Admin@medleg.unbosque.edu.co/msp/signcerts/Admin@medleg.unbosque.edu.co-cert.pem'
+    connectionProfile:
+      path: './connection-profiles/connection-medleg.yaml'
+
+  - mspid: FiscaliaMSP
+    identities:
+      certificates:
+        - name: 'Admin@fiscalia.unbosque.edu.co'
+          clientPrivateKey:
+            path: '../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/fiscalia.unbosque.edu.co/users/Admin@fiscalia.unbosque.edu.co/msp/keystore/priv_sk'
+          clientSignedCert:
+            path: '../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/fiscalia.unbosque.edu.co/users/Admin@fiscalia.unbosque.edu.co/msp/signcerts/Admin@fiscalia.unbosque.edu.co-cert.pem'
+    connectionProfile:
+      path: './connection-profiles/connection-fiscalia.yaml'
+
