@@ -1,0 +1,42 @@
+name: "MedLeg Network"
+version: "1.0.0"
+
+client:
+  organization: MedLeg
+  credentialStore:
+    path: "./wallet"
+    cryptoStore:
+      path: "./wallet"
+
+organizations:
+  MedLeg:
+    mspid: MedLegMSP
+    peers:
+      - peer0.medleg.unbosque.edu.co
+    certificateAuthorities:
+      - ca.medleg.unbosque.edu.co
+
+peers:
+  peer0.medleg.unbosque.edu.co:
+    url: grpcs://localhost:8051
+    tlsCACerts:
+      path: ../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/medleg.unbosque.edu.co/peers/peer0.medleg.unbosque.edu.co/tls/ca.crt
+    grpcOptions:
+      ssl-target-name-override: peer0.medleg.unbosque.edu.co
+      hostnameOverride: peer0.medleg.unbosque.edu.co
+
+orderers:
+  orderer.unbosque.edu.co:
+    url: grpcs://localhost:7050
+    tlsCACerts:
+      path: ../../../red-hyperledger-fabric/unbosque-network/crypto-config/ordererOrganizations/unbosque.edu.co/orderers/orderer.unbosque.edu.co/tls/ca.crt
+    grpcOptions:
+      ssl-target-name-override: orderer.unbosque.edu.co
+      hostnameOverride: orderer.unbosque.edu.co
+
+certificateAuthorities:
+  ca.medleg.unbosque.edu.co:
+    url: https://localhost:7054
+    caName: ca-medleg
+    tlsCACerts:
+      path: ../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/medleg.unbosque.edu.co/ca/ca.medleg.unbosque.edu.co-cert.pem

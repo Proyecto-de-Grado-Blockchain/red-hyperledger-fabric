@@ -82,12 +82,36 @@ class BlockchainMedicinaForenseChaincode extends Contract {
         return JSON.stringify([JSON.parse(documentoJSON.toString())]);  // Devolver como un array de un solo elemento
     }
 
+<<<<<<< HEAD
+    async consultarDocumentosPorCaso(ctx, idCaso) {
+        const allResults = [];
+        const iterator = await ctx.stub.getStateByRange('', '');
+        let result = await iterator.next();
+
+        while (!result.done) {
+            if (result.value && result.value.value.toString()) {
+                const obj = JSON.parse(result.value.value.toString());
+                // Verificar si el objeto es un Documento y si el idCaso coincide
+                // Asumimos que los documentos tienen la propiedad 'tipoDocumento'
+                if (obj.tipoDocumento && obj.idCaso === idCaso) {
+                    allResults.push(obj);
+                }
+            }
+            result = await iterator.next();
+        }
+        await iterator.close();
+        return JSON.stringify(allResults);
+    }
+
+
+=======
     async consultarDocumentosCaso(ctx, idCaso) {
         const queryString = {
             selector: {
                 idCaso: idCaso
             }
         };
+>>>>>>> 30b0448522e5342552596c4346a35ddda23ce9a3
     
         const resultados = await this.consultarPorQuery(ctx, JSON.stringify(queryString));
         return resultados;

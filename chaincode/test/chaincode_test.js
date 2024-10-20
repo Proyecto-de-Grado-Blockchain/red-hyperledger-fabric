@@ -92,4 +92,64 @@ describe('Blockchain Medicina Forense Chaincode', () => {
     
         expect(result).to.deep.equal([documento]);
     });
+
+    // Nueva prueba para consultar documentos por ID de caso
+    it('debería consultar documentos por ID de caso correctamente', async () => {
+        // Crear un caso
+        const caso = {
+            id: 'caso2',
+            numeroCaso: 'CASO002',
+            nombrePaciente: 'Maria Paciente',
+            fechaCreacion: '2024-10-01',
+            estado: 'En Proceso',
+            idUsuario: 'user2'
+        };
+        await chaincode.crearCaso(ctx, caso.id, caso.numeroCaso, caso.nombrePaciente, caso.fechaCreacion, caso.estado, caso.idUsuario);
+
+        // Crear múltiples documentos asociados al caso
+        const documentos = [
+            {
+                id: 'doc2',
+                idCaso: 'caso2',
+                tipoDocumento: 'Informe Médico',
+                nombreArchivo: 'informe_medico.pdf',
+                fechaSubida: '2024-10-05',
+                usuarioResponsable: 'user2',
+                hashDocumento: 'hash_documento_2'
+            },
+            {
+                id: 'doc3',
+                idCaso: 'caso2',
+                tipoDocumento: 'Informe Forense',
+                nombreArchivo: 'informe_forense_caso2.pdf',
+                fechaSubida: '2024-10-06',
+                usuarioResponsable: 'user2',
+                hashDocumento: 'hash_documento_3'
+            },
+            {
+                id: 'doc4',
+                idCaso: 'caso2',
+                tipoDocumento: 'Análisis de Laboratorio',
+                nombreArchivo: 'analisis_laboratorio.pdf',
+                fechaSubida: '2024-10-07',
+                usuarioResponsable: 'user2',
+                hashDocumento: 'hash_documento_4'
+            }
+        ];
+
+        // Agregar los documentos al ledger
+        for (const doc of documentos) {
+            await chaincode.agregarDocumento(ctx, doc.id, doc.idCaso, doc.tipoDocumento, doc.nombreArchivo, doc.fechaSubida, doc.usuarioResponsable, doc.hashDocumento);
+        }
+
+        // Consultar los documentos por ID de caso
+        const consultarResponse = await chaincode.consultarDocumentosPorCaso(ctx, caso.id);
+        const result = JSON.parse(consultarResponse);
+
+        // Verificar que la lista de documentos coincida con los documentos creados
+        expect(result).to.have.lengthOf(documentos.length);
+        expect(result).to.deep.have.members(documentos);
+    });
+
+    
 });

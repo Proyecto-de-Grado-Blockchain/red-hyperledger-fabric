@@ -1,0 +1,42 @@
+name: "CTI Network"
+version: "1.0.0"
+
+client:
+  organization: CTI
+  credentialStore:
+    path: "./wallet"
+    cryptoStore:
+      path: "./wallet"
+
+organizations:
+  CTI:
+    mspid: CTIMSP
+    peers:
+      - peer0.cti.unbosque.edu.co
+    certificateAuthorities:
+      - ca.cti.unbosque.edu.co
+
+peers:
+  peer0.cti.unbosque.edu.co:
+    url: grpcs://localhost:7051
+    tlsCACerts:
+      path: ../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/cti.unbosque.edu.co/peers/peer0.cti.unbosque.edu.co/tls/ca.crt
+    grpcOptions:
+      ssl-target-name-override: peer0.cti.unbosque.edu.co
+      hostnameOverride: peer0.cti.unbosque.edu.co
+
+orderers:
+  orderer.unbosque.edu.co:
+    url: grpcs://localhost:7050
+    tlsCACerts:
+      path: ../../../red-hyperledger-fabric/unbosque-network/crypto-config/ordererOrganizations/unbosque.edu.co/orderers/orderer.unbosque.edu.co/tls/ca.crt
+    grpcOptions:
+      ssl-target-name-override: orderer.unbosque.edu.co
+      hostnameOverride: orderer.unbosque.edu.co
+
+certificateAuthorities:
+  ca.cti.unbosque.edu.co:
+    url: https://localhost:7074
+    caName: ca-cti
+    tlsCACerts:
+      path: ../../../red-hyperledger-fabric/unbosque-network/crypto-config/peerOrganizations/cti.unbosque.edu.co/ca/ca.cti.unbosque.edu.co-cert.pem
