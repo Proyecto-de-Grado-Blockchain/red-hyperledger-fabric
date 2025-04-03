@@ -75,7 +75,7 @@
                     Rule: "OR('FiscaliaMSP.admin', 'FiscaliaMSP.peer', 'FiscaliaMSP.client')"
                 Writers:
                     Type: Signature
-                    Rule: "OR('FiscaliaMSP.admin', 'FiscaliaMSP.client')"
+                    Rule: "OR('FiscaliaMSP.admin')"
                 Admins:
                     Type: Signature
                     Rule: "OR('FiscaliaMSP.admin')"

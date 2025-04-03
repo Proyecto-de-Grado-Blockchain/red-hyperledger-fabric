@@ -237,6 +237,31 @@ class BlockchainMedicinaForenseChaincode extends Contract {
         return JSON.stringify([JSON.parse(historialJSON.toString())]);
     }
 
+    /**
+     * Consulta todos las historias asociadas a un caso específico.
+     * @param {BlockchainMedicinaForenseContext} ctx El contexto de la transacción.
+     * @param {string} idCaso ID del caso cuya historia se quiere consultar.
+     * @returns {string} Un array de objetos historias asociadas al caso, en formato JSON string.
+     * @throws {Error} Si el idCaso no se proporciona.
+     */
+    async consultarHistorialCaso(ctx, idCaso) {
+        if (!idCaso) {
+            throw new Error('El ID del caso no puede estar vacío.');
+        }
+
+        // Query usando docType y idCaso para obtener solo las historias de ese caso
+        const queryString = JSON.stringify({
+            selector: {
+                docType: 'historial', // Asegura que solo se obtengan objetos de tipo Historial
+                idCaso: idCaso
+            }
+            // Opcional: Añadir sort si se desea un orden específico, ej:
+            // sort: [{ 'fechaSubida': 'asc' }]
+        });
+        const resultados = await this.consultarPorQuery(ctx, queryString);
+        return resultados; // consultarPorQuery ya retorna un string JSON
+    }
+
     // =========================================================================================
     // Métodos para la gestión de Documentos asociados a Casos
     // =========================================================================================
