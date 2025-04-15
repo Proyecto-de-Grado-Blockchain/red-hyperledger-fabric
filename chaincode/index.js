@@ -143,6 +143,27 @@ class BlockchainMedicinaForenseChaincode extends Contract {
         return JSON.stringify(caso);
     }
 
+    async actualizarCaso(ctx, id, estado, newValue) {
+        /*
+        const exists = await this.documentExists(ctx, id);
+        if (!exists) {
+            throw new Error(`El caso ${id} no existe`);
+        }*/
+    
+        const data = await ctx.stub.getState(id);
+        const document = JSON.parse(data.toString());
+    
+        if (!document.hasOwnProperty(estado)) {
+            throw new Error(`El campo '${estado}' no existe en el documento`);
+        }
+    
+        document[estado] = newValue;
+    
+        await ctx.stub.putState(id, Buffer.from(JSON.stringify(document)));
+    
+        return JSON.stringify(document);
+    }
+
     /**
      * Consulta un caso existente por su ID.
      * @param {BlockchainMedicinaForenseContext} ctx El contexto de la transacción.
@@ -183,8 +204,7 @@ class BlockchainMedicinaForenseChaincode extends Contract {
         });
         const resultados = await this.consultarPorQuery(ctx, queryString)
         return resultados; // consultarPorQuery ya retorna un string JSON
-    }
-
+    }       
 
     // =========================================================================================
     // Métodos para la gestión del Historial de Casos
