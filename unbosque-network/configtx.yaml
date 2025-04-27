@@ -143,8 +143,8 @@
             Consenters:
             - Host: orderer.unbosque.edu.co
               Port: 7050
-              ClientTLSCert: ../organizations/ordererOrganizations/unbosque.edu.co/orderers/orderer.unbosque.edu.co/tls/server.crt
-              ServerTLSCert: ../organizations/ordererOrganizations/unbosque.edu.co/orderers/orderer.unbosque.edu.co/tls/server.crt
+              ClientTLSCert: ./crypto-config/ordererOrganizations/unbosque.edu.co/orderers/orderer.unbosque.edu.co/tls/server.crt
+              ServerTLSCert: ./crypto-config/ordererOrganizations/unbosque.edu.co/orderers/orderer.unbosque.edu.co/tls/server.crt
     
         Addresses:
             - orderer.unbosque.edu.co:7050

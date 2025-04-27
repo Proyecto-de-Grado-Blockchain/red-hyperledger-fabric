@@ -28,6 +28,7 @@ services:
     - ../crypto-config/ordererOrganizations/unbosque.edu.co/orderers/orderer.unbosque.edu.co/tls/:/var/hyperledger/orderer/tls
     ports:
       - 7050:7050
+      - 9444:9444
 
   peer0.cti.unbosque.edu.co:
     container_name: peer0.cti.unbosque.edu.co
