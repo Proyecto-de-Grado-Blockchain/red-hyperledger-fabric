@@ -9,7 +9,7 @@ class Documento {
      *
      * @param {string} id - Identificador único para el documento.
      * @param {string} idCaso - ID del Caso al que pertenece este documento. Establece la relación.
-     * @param {string} tipoDocumento - Categoría o tipo del documento (ej. 'Radiografía', 'Informe', 'Consentimiento').
+     * @param {string} tipoDocumento - Categoría o tipo del documento.
      * @param {string} nombreArchivo - Nombre original o descriptivo del archivo.
      * @param {string} fechaSubida - Marca de tiempo o fecha ISO8601 de cuándo se subió o registró el documento.
      * @param {string} usuarioResponsable - ID del usuario que subió o registró el documento.
